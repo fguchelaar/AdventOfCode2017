@@ -12,7 +12,7 @@ let input = "5994521226795838486188872189952551475352929145357284983463678944777
 
 let digits = input.map { Int(String($0))! }
 
-func getSum(_ digits: [Int], offset: Int) -> Int {
+func captcha(_ digits: [Int], offset: Int) -> Int {
     var sum = 0
     for i in 0..<digits.count {
         let compareWith = (i + offset) % digits.count
@@ -23,5 +23,14 @@ func getSum(_ digits: [Int], offset: Int) -> Int {
     return sum
 }
 
-print ("Part one: \(getSum(digits, offset: 1))")
-print ("Part two: \(getSum(digits, offset: digits.count/2))")
+print ("Part one: \(captcha(digits, offset: 1))")
+print ("Part two: \(captcha(digits, offset: digits.count/2))")
+
+// MARK: created a `reduce` verion, using `.enumerated()` to get both the element and offset in the array
+
+func captchaReduce(_ digits: [Int], offset: Int) -> Int {
+    return digits.enumerated().reduce(0) { $0 + ($1.element == digits[($1.offset + offset) % digits.count] ? $1.element : 0) }
+}
+
+print ("Part one': \(captchaReduce(digits, offset: 1))")
+print ("Part two': \(captchaReduce(digits, offset: digits.count/2))")
