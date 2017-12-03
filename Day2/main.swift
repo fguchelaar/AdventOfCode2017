@@ -4,16 +4,13 @@ let input = try! String(contentsOfFile: "day2-input.txt")
 
 let rows = input.trimmingCharacters(in: .whitespacesAndNewlines).components(separatedBy: .newlines)
 
-let checksum1 = rows.reduce(0) { (sum, row) in
-    
-    let values = row.components(separatedBy: "\t")
-        .map { Int($0)! }
-        .sorted()
-
-    return sum + (values.last! - values.first!)
-}
+let checksum1 = rows.map { $0.components(separatedBy: "\t").map { Int($0)! } }
+                    .map { $0.max()! - $0.min()!}
+                    .reduce(0, +)
 
 print ("Part one: \(checksum1)")
+
+
 
 let checksum2 = rows.reduce(0) { (sum, row) in
     
