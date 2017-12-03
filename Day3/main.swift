@@ -66,32 +66,18 @@ func point(for position: Int) -> (x: Int, y: Int) {
     let distance = abs(position - p2)
     let range = p1 - p2
     let quarter = range / 4
-    
-    var side = -1
+
     if distance < quarter {
-        side = 1
+        return (r,diff)
     }
     else if distance < quarter * 2 {
-        side = 2
+        return (-diff,r)
     }
     else if distance < quarter * 3 {
-        side = 3
-    }
-    else if distance < quarter * 4 {
-        side = 4
-    }
-    
-    switch side {
-    case 1:
-        return (r,diff)
-    case 2:
-        return (-diff,r)
-    case 3:
         return (-r,-diff)
-    case 4:
+    }
+    else {
         return (diff,-r)
-    default:
-        return (-1,-1)
     }
 }
 
@@ -145,7 +131,6 @@ func value(for pos: Int) -> Int {
         (p.x, p.y - 1),
         (p.x + 1, p.y - 1)
         ].filter {  position(for: $0) < pos  }
-    
     
     let sortedNeighbours = neigbours.map { position(for: $0) }.sorted(by: >)
     let sum = sortedNeighbours.reduce(0) {$0 + value(for: $1)}
