@@ -58,6 +58,7 @@
 
 /* Begin PBXFileReference section */
 		0180C2281FD295D900FE0032 /* day2-input.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "day2-input.txt"; sourceTree = "<group>"; };
+		01B596701FD5F2AE00FA98DC /* Combinations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Combinations.swift; sourceTree = "<group>"; };
 		01C7804F1FD35FC2008FE5E8 /* Day3 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Day3; sourceTree = BUILT_PRODUCTS_DIR; };
 		01C780511FD35FC2008FE5E8 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		01C7805C1FD527B8008FE5E8 /* Day4 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Day4; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,6 +102,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		01B5966F1FD5F29900FA98DC /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				01B596701FD5F2AE00FA98DC /* Combinations.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 		01C780501FD35FC2008FE5E8 /* Day3 */ = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +134,7 @@
 				01F4B69D1FD1EE5300FF615F /* Day2 */,
 				01C780501FD35FC2008FE5E8 /* Day3 */,
 				01C7805D1FD527B8008FE5E8 /* Day4 */,
+				01B5966F1FD5F29900FA98DC /* Shared */,
 				01E04A4C1FCF3F7F00A8D649 /* Products */,
 			);
 			sourceTree = "<group>";
