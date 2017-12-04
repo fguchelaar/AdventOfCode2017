@@ -22,4 +22,4 @@ let validPartOne = validPassphrases(phrases: rows).count
 print("Part one: \(validPartOne)")
 
 let validPartTwo = validPassphrases(phrases: rows).filter{ !containsAnagram(passphrase: $0) }.count
-print("Part one: \(validPartTwo)")
+print("Part two: \(validPartTwo)")
