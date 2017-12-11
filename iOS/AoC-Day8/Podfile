@@ -1,0 +1,10 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'AoC-Day8' do
+  use_frameworks!
+
+  # Pods for AoC-Day8
+ pod 'ARCharts'
+
+end

@@ -1,0 +1,6 @@
+framework module ARCharts {
+  umbrella header "ARCharts-umbrella.h"
+
+  export *
+  module * { export * }
+}
