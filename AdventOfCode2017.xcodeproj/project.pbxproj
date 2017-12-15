@@ -10,6 +10,7 @@
 		012087341FE257E40084AA2A /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012087331FE257E40084AA2A /* main.swift */; };
 		012087391FE25BD50084AA2A /* String+KnotHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012087381FE25BD50084AA2A /* String+KnotHash.swift */; };
 		012087411FE3B5CF0084AA2A /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012087401FE3B5CF0084AA2A /* main.swift */; };
+		0154E4341FE46751006BB419 /* Measure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0154E4331FE46751006BB419 /* Measure.swift */; };
 		0169D5321FD92D110081D25B /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0169D5311FD92D110081D25B /* main.swift */; };
 		0169D5371FD98BFA0081D25B /* day7-input.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0169D5361FD92D3F0081D25B /* day7-input.txt */; };
 		0180C2291FD2961800FE0032 /* day2-input.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0180C2281FD295D900FE0032 /* day2-input.txt */; };
@@ -188,6 +189,7 @@
 		012087381FE25BD50084AA2A /* String+KnotHash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+KnotHash.swift"; sourceTree = "<group>"; };
 		0120873E1FE3B5CF0084AA2A /* Day15 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Day15; sourceTree = BUILT_PRODUCTS_DIR; };
 		012087401FE3B5CF0084AA2A /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		0154E4331FE46751006BB419 /* Measure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Measure.swift; sourceTree = "<group>"; };
 		0169D52F1FD92D110081D25B /* Day7 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Day7; sourceTree = BUILT_PRODUCTS_DIR; };
 		0169D5311FD92D110081D25B /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		0169D5361FD92D3F0081D25B /* day7-input.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "day7-input.txt"; sourceTree = "<group>"; };
@@ -383,6 +385,7 @@
 			children = (
 				01B596701FD5F2AE00FA98DC /* Combinations.swift */,
 				012087381FE25BD50084AA2A /* String+KnotHash.swift */,
+				0154E4331FE46751006BB419 /* Measure.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -893,6 +896,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0154E4341FE46751006BB419 /* Measure.swift in Sources */,
 				012087411FE3B5CF0084AA2A /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

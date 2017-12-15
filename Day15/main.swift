@@ -1,47 +1,53 @@
 import Foundation
 
-func measure(code: () -> Void) {
-    
-    let start = DispatchTime.now()
-    code()
-    let end = DispatchTime.now()
-    let nanoTime = end.uptimeNanoseconds - start.uptimeNanoseconds // <<<<< Difference in nano seconds (UInt64)
-    let timeInterval = Double(nanoTime) / 1_000_000_000 // Technically could overflow for long running tests
-    print("Code ran \(timeInterval) seconds")
-}
-
-measure {
-    var generatorA =  512
-    var generatorB = 191
-    
-    let factorA = 16807
-    let factorB = 48271
-    
+class Generator {
     let divisor = 2147483647
     
-    let check = Int(pow(Double(2), Double(16))) - 1
+    var value: Int
+    var factor: Int
     
-    var triedPairs = 0
-    var numberOfPairs = 0
-    //    for _ in 0..<40000000 {
-    while triedPairs < 5000000 {
-        
+    init(startValue value: Int, factor: Int) {
+        self.value = value
+        self.factor = factor
+    }
+    
+    func next() -> Int {
+        value = (value * factor) % divisor
+        return value
+    }
+    
+    func next(with: Int) -> Int {
         repeat {
-            generatorA *= factorA
-            generatorA %= divisor
-        } while (generatorA & 3 != 0)
-        
-        repeat {
-            generatorB *= factorB
-            generatorB %= divisor
-        } while (generatorB & 7 != 0)
-        
-        triedPairs += 1
+            _ = self.next()
+        } while (value & (with-1) != 0)
+        return value
+    }
+}
 
-        if (generatorA & check) == (generatorB & check) {
+let check = Int(pow(Double(2), Double(16))) - 1
+
+measure {
+    let generatorA =  Generator(startValue: 512, factor: 16807)
+    let generatorB = Generator(startValue: 191, factor: 48271)
+    
+    var numberOfPairs = 0
+    for _ in 0..<40000000 {
+        if (generatorA.next() & check) == (generatorB.next() & check) {
             numberOfPairs += 1
         }
     }
+    print ("Part one: \(numberOfPairs)")
+}
+
+measure {
+    let generatorA =  Generator(startValue: 512, factor: 16807)
+    let generatorB = Generator(startValue: 191, factor: 48271)
     
-    print (numberOfPairs)
+    var numberOfPairs = 0
+    for _ in 0..<5000000 {
+        if (generatorA.next(with: 4) & check) == (generatorB.next(with: 8) & check) {
+            numberOfPairs += 1
+        }
+    }
+    print ("Part two: \(numberOfPairs)")
 }
