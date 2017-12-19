@@ -38,9 +38,9 @@ class MazeWalker {
     var letters = [Character]()
     var numberOfSteps = 0
     
-    init(maze: [[Character]], position: (x: Int, y: Int)) {
+    init(maze: [[Character]]) {
         self.maze = maze
-        self.position = position
+        self.position = (x: Int(maze[0].index(of: "|")!), y: 0)
     }
 
     func changeDirection() {
@@ -84,8 +84,8 @@ func parseMaze(string: String) -> [[Character]] {
     return string.components(separatedBy: .newlines).map { $0.map { $0 } }
 }
 
-let walker = MazeWalker(maze: parseMaze(string: input), position: (x: 113, y: 0))
+let walker = MazeWalker(maze: parseMaze(string: input))
 walker.findExit()
-print("Part one: \(String(walker.letters))")
 
+print("Part one: \(String(walker.letters))")
 print("Part two: \(walker.numberOfSteps)")
