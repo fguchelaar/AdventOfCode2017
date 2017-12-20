@@ -68,18 +68,22 @@ print("Part one: \(closestParticle.0) (\(closestParticle.1.distance))")
 let n = 100
 for i in 0..<n {
     
+    // Calculate all positions after t
     let positions = particles
         .enumerated()
         .map { ($0.offset, $0.element.positionAfter(t: i)) }
     
+    // Create a dictionary of postion:count
     let counts = positions.reduce(into: [:], { (dict, tuple) in
         dict[tuple.1, default: 0] += 1
     })
     
+    // Filter all indexes of the positions with count > 1
     let toRemoveIndexes = positions
         .filter { counts[$0.1]! > 1 }
         .map { $0.0 }
     
+    // Filter out all particles to remove, based on the index
     particles = particles
         .enumerated()
         .filter { !toRemoveIndexes.contains($0.offset) }
