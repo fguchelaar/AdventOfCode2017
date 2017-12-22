@@ -36,6 +36,10 @@ class VirusCarrier {
             return Direction(rawValue: (self.rawValue + 1) % 4)!
         }
         
+        func reverse() -> Direction {
+            return Direction(rawValue: (self.rawValue + 2) % 4)!
+        }
+        
         var vector: (dx: Int, dy: Int) {
             switch self {
             case .up:
@@ -85,7 +89,7 @@ class VirusCarrier {
             direction = direction.turnRight()
         }
         else { // 3==Flagged
-            direction = direction.turnRight().turnRight()
+            direction = direction.reverse()
         }
         
         infected[position] = (infected[position, default: 0] + 1) % 4
