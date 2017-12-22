@@ -13,7 +13,7 @@ struct Position: Hashable {
     var y: Int
     
     var hashValue: Int {
-        return "x\(x)y\(y)".hashValue
+        return x.hashValue ^ y.hashValue
     }
     
     static func ==(lhs: Position, rhs: Position) -> Bool {

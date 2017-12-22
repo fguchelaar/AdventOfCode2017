@@ -10,13 +10,13 @@ struct Vector: Equatable, Hashable {
     var distance: Int {
         return abs(x) + abs(y) + abs(z)
     }
-
+    
     static func ==(lhs: Vector, rhs: Vector) -> Bool {
         return lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z
     }
-
+    
     var hashValue: Int {
-        return "x\(x),y\(y),z\(z)".hashValue
+        return x.hashValue ^ y.hashValue ^ z.hashValue
     }
 }
 
@@ -45,8 +45,8 @@ struct Particle {
     
     func positionAfter(t: Int) -> Vector {
         return Vector(x: position.x + displacement(velocity: velocity.x, acceleration: acceleration.x, time: t),
-            y: position.y + displacement(velocity: velocity.y, acceleration: acceleration.y, time: t),
-            z: position.z + displacement(velocity: velocity.z, acceleration: acceleration.z, time: t))
+                      y: position.y + displacement(velocity: velocity.y, acceleration: acceleration.y, time: t),
+                      z: position.z + displacement(velocity: velocity.z, acceleration: acceleration.z, time: t))
     }
 }
 
@@ -55,38 +55,42 @@ var particles = input
     .map { Particle(string: $0) }
 
 // MARK: Part one, calculate positions after 100000 steps, seems far enough for "in the long term"
-let t = 100000
-let closestParticle = particles
-    .enumerated()
-    .map { ($0.offset, $0.element.positionAfter(t: t)) }
-    .sorted { $0.1.distance < $1.1.distance }
-    .first!
-
-print("Part one: \(closestParticle.0) (\(closestParticle.1.distance))")
+measure {
+    let t = 100000
+    let closestParticle = particles
+        .enumerated()
+        .map { ($0.offset, $0.element.positionAfter(t: t)) }
+        .sorted { $0.1.distance < $1.1.distance }
+        .first!
+    
+    print("Part one: \(closestParticle.0) (\(closestParticle.1.distance))")
+}
 
 // MARK: Part two, simulate for _n_ times, count leftovers afterwards
-let n = 100
-for i in 0..<n {
-    
-    // Calculate all positions after t
-    let positions = particles
-        .enumerated()
-        .map { ($0.offset, $0.element.positionAfter(t: i)) }
-    
-    // Create a dictionary of postion:count
-    let counts = positions.reduce(into: [:], { (dict, tuple) in
-        dict[tuple.1, default: 0] += 1
-    })
-    
-    // Filter all indexes of the positions with count > 1
-    let toRemoveIndexes = positions
-        .filter { counts[$0.1]! > 1 }
-        .map { $0.0 }
-    
-    // Filter out all particles to remove, based on the index
-    particles = particles
-        .enumerated()
-        .filter { !toRemoveIndexes.contains($0.offset) }
-        .map { $0.element }
+measure {
+    let n = 100
+    for i in 0..<n {
+        
+        // Calculate all positions after t
+        let positions = particles
+            .enumerated()
+            .map { ($0.offset, $0.element.positionAfter(t: i)) }
+        
+        // Create a dictionary of postion:count
+        let counts = positions.reduce(into: [:], { (dict, tuple) in
+            dict[tuple.1, default: 0] += 1
+        })
+        
+        // Filter all indexes of the positions with count > 1
+        let toRemoveIndexes = positions
+            .filter { counts[$0.1]! > 1 }
+            .map { $0.0 }
+        
+        // Filter out all particles to remove, based on the index
+        particles = particles
+            .enumerated()
+            .filter { !toRemoveIndexes.contains($0.offset) }
+            .map { $0.element }
+    }
+    print("Part two: \(particles.count)")
 }
-print("Part two: \(particles.count)")

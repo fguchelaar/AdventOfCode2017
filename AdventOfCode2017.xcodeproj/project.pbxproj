@@ -22,6 +22,7 @@
 		017817521FED18B80092FDCF /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017817511FED18B80092FDCF /* main.swift */; };
 		017817571FED18CC0092FDCF /* day22-input.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 017817561FED18CA0092FDCF /* day22-input.txt */; };
 		017817581FED31640092FDCF /* Measure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0154E4331FE46751006BB419 /* Measure.swift */; };
+		017817591FED37770092FDCF /* Measure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0154E4331FE46751006BB419 /* Measure.swift */; };
 		017934791FEAE34B0095A24E /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017934781FEAE34B0095A24E /* main.swift */; };
 		0179347E1FEAE3700095A24E /* day20-input.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0179347D1FEAE35B0095A24E /* day20-input.txt */; };
 		0179347F1FEB1ED70095A24E /* Measure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0154E4331FE46751006BB419 /* Measure.swift */; };
@@ -1282,6 +1283,7 @@
 			files = (
 				012087391FE25BD50084AA2A /* String+KnotHash.swift in Sources */,
 				012087341FE257E40084AA2A /* main.swift in Sources */,
+				017817591FED37770092FDCF /* Measure.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1586,7 +1588,9 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LU4EN4MKCR;
+				GCC_OPTIMIZATION_LEVEL = s;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -1606,9 +1610,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LU4EN4MKCR;
-				GCC_OPTIMIZATION_LEVEL = s;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;

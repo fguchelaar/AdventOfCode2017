@@ -29,13 +29,16 @@ func parseDisk(with key: String) -> [Square] {
         .flatMap { $0 }
 }
 
-let squares = parseDisk(with: input)
-print ("Part one: \(squares.count)")
+var squares: [Square]!
+measure {
+    squares = parseDisk(with: input)
+    print ("Part one: \(squares.count)")
+}
 
 // MARK: part two
 extension Square: Equatable, Hashable {
     var hashValue: Int {
-        return (x*1000 + y).hashValue
+        return x.hashValue ^ y.hashValue
     }
     
     static func ==(lhs: Square, rhs: Square) -> Bool {
@@ -64,7 +67,7 @@ func findGroup(for square: Square, in squares: Set<Square>) -> Set<Square> {
     for square in neighbours {
         remaining.remove(square)
     }
-
+    
     var group = Set<Square>(neighbours)
     group.insert(square)
     neighbours.forEach {
@@ -77,14 +80,16 @@ func findGroup(for square: Square, in squares: Set<Square>) -> Set<Square> {
     return group
 }
 
-var partTwoAllSquares = Set(squares) // From part one
-var groups = Set<Set<Square>>()
-repeat {
-    let group = findGroup(for: partTwoAllSquares.first!, in: partTwoAllSquares)
-    for square in group {
-        partTwoAllSquares.remove(square)
-    }
-    groups.insert(group)
-} while !partTwoAllSquares.isEmpty
-
-print ("Part two: \(groups.count)")
+measure {
+    var partTwoAllSquares = Set(squares) // From part one
+    var groups = Set<Set<Square>>()
+    repeat {
+        let group = findGroup(for: partTwoAllSquares.first!, in: partTwoAllSquares)
+        for square in group {
+            partTwoAllSquares.remove(square)
+        }
+        groups.insert(group)
+    } while !partTwoAllSquares.isEmpty
+    
+    print ("Part two: \(groups.count)")
+}
